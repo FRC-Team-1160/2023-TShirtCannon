@@ -32,11 +32,6 @@ public class Shoot extends CommandBase {
   @Override
   public void initialize() {
     m_timer.start();
-    // -1 means all shoot at the same time
-    // if (m_num == 1 || m_num == -1) m_cannon.setValves(true, false, false);
-    // else if (m_num == 2 || m_num == -1) m_cannon.setValves(false, true, false);
-    // else if (m_num == 3 || m_num == -1) m_cannon.setValves(false, false, true);
-    // ????
     if (m_num == 1) m_cannon.setValves(true, false, false);
     else if (m_num == 2) m_cannon.setValves(false, true, true);
     else if (m_num == 3) m_cannon.setValves(false, false, true);

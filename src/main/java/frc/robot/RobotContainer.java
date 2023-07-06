@@ -57,10 +57,10 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     new JoystickButton(m_mainStick, Constants.OIConstants.Y)
-      .onTrue(new Shoot(m_cannon, 0.05, -1));
+      .onTrue(new Shoot(m_cannon, 0.5, -1));
 
     new JoystickButton(m_mainStick, Constants.OIConstants.X)
-      .onTrue(new Shoot(m_cannon, 0.05, 1));
+      .onTrue(new Shoot(m_cannon, 0.5, 1));
 
     new JoystickButton(m_mainStick, Constants.OIConstants.A)
       .onTrue(
