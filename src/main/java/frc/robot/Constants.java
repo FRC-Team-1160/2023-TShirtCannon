@@ -17,7 +17,7 @@ package frc.robot;
  */
 public final class Constants {
     public static final class PortConstants{
-        //public static final int PITCH_MOTOR = 10; // double check pitch motor id
+        public static final int PITCH_MOTOR = 7; // double check pitch motor id
 
         public static final int BACK_LEFT = 4;
         public static final int MID_LEFT = 5;

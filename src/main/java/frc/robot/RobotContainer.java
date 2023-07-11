@@ -73,14 +73,16 @@ public class RobotContainer {
       );
       
     new JoystickButton(m_mainStick, Constants.OIConstants.LB)
-    .onTrue( //change to whileTrue() for continuous on button hold if needed
-      new Angle(m_cannon, -0.1) //set low just in case
+    .whileTrue(
+      new Angle(m_cannon, -0.17)
     );
 
     new JoystickButton(m_mainStick, Constants.OIConstants.RB)
-    .onTrue(
-      new Angle(m_cannon, 0.1)
+    .whileTrue(
+      new Angle(m_cannon, 0.17)
     );
+
+
     //whenPressed() deprecated
   }
 

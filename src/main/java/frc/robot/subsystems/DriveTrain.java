@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.PortConstants;
+import edu.wpi.first.math.filter.SlewRateLimiter;
 
 public class DriveTrain extends SubsystemBase {
   /**
@@ -27,6 +28,8 @@ public class DriveTrain extends SubsystemBase {
   private MotorController m_l, m_r;
 
   private DifferentialDrive m_drive;
+
+  private SlewRateLimiter rate;
 
   public static DriveTrain getInstance(){
 		if(m_instance == null)
@@ -47,11 +50,14 @@ public class DriveTrain extends SubsystemBase {
   
     m_drive = new DifferentialDrive(m_l, m_r);
   
+    rate = new SlewRateLimiter(1, -1, 0);
   }
 
   public void tankDrive(double x, double z, double correction){
-    System.out.println("x" + String.valueOf(-x+z) + "z" + String.valueOf(-x-z));
-    m_drive.tankDrive(-x-z, x-z);
+    System.out.println("x" + String.valueOf(-x-z) + "z" + String.valueOf(x-z));
+    //m_drive.tankDrive(Math.signum(-x+z) * 0.6 * rate.calculate(-x+z), Math.signum(x+z) * 0.6 * rate.calculate(x+z));
+    m_drive.tankDrive(0.6 * (-x+z), 0.6 * (x+z));
+
 	}
 
   @Override

@@ -34,7 +34,7 @@ public class Cannon extends SubsystemBase {
 		m_v1 = new Solenoid(PneumaticsModuleType.CTREPCM, PortConstants.VALVE_1);
 		//m_v2 = new Solenoid(PneumaticsModuleType.REVPH, PortConstants.VALVE_2);
 		//m_v3 = new Solenoid(PneumaticsModuleType.REVPH, PortConstants.VALVE_3);
-		//m_pM = new CANSparkMax(PortConstants.PITCH_MOTOR, MotorType.kBrushless);
+		m_pM = new CANSparkMax(PortConstants.PITCH_MOTOR, MotorType.kBrushless);
 	}
 
 	public void setValves(boolean v1, boolean v2, boolean v3){
@@ -45,7 +45,7 @@ public class Cannon extends SubsystemBase {
 	}
 
 	public void moveAngle(double amount){
-		//m_pM.set(amount);
+		m_pM.set(amount);
 	}
 
   @Override
