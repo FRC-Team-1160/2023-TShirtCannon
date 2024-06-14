@@ -32,7 +32,7 @@ public final class Constants {
     }
 
     public static final class OIConstants {
-        public static final int mainStickPort = 0;
+        public static final int mainStickPort = 2;
 
         public static final int A = 1;
         public static final int B = 2;
