@@ -25,7 +25,7 @@ public class Cannon extends SubsystemBase {
 	private Solenoid m_v1, m_v2, m_v3;
 	double setpoint;
 
-	PIDController pid = new PIDController(0.2, 0, 0);
+	PIDController pid = new PIDController(0.15, 0, 0);
 
 	static Cannon instance;
 	
@@ -66,5 +66,6 @@ public class Cannon extends SubsystemBase {
 		}
 		
 		m_pM.set(pid.calculate(m_pM.getEncoder().getPosition(), setpoint));
+		// m_pM.set(0);
 	}
 }

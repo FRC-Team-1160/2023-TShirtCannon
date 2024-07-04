@@ -43,7 +43,7 @@ public class RobotContainer {
     configureButtonBindings();
     m_driveTrain.setDefaultCommand(new RunCommand(
         () -> m_driveTrain.tankDrive(
-          m_mainStick.getRawAxis(1),
+          -m_mainStick.getRawAxis(1),
           0.5*m_mainStick.getRawAxis(4),
           0.25),
         m_driveTrain)

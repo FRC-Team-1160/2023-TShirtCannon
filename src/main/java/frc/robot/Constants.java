@@ -17,18 +17,20 @@ package frc.robot;
  */
 public final class Constants {
     public static final class PortConstants{
-        public static final int PITCH_MOTOR = 7; // double check pitch motor id
 
-        public static final int BACK_LEFT = 1;
-        public static final int MID_LEFT = 2;
-        public static final int FRONT_LEFT = 3;
+        public static final int PITCH_MOTOR = 2;
 
-        public static final int BACK_RIGHT = 4;
+        public static final int BACK_LEFT = 3;
+        public static final int MID_LEFT = 1;
+        public static final int FRONT_LEFT = 17;
+
+        public static final int BACK_RIGHT = 10;
         public static final int MID_RIGHT = 5;
-        public static final int FRONT_RIGHT = 6;
+        public static final int FRONT_RIGHT = 4;
 
-        public static final int VALVE_1 = 0; //double check valve ids
-        //add other two valves once available
+
+        //Valves still not controllable
+        public static final int VALVE_1 = 0; 
     }
 
     public static final class OIConstants {
