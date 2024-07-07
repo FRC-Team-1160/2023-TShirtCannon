@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.OIConstants;
@@ -59,20 +60,18 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     new JoystickButton(m_mainStick, Constants.OIConstants.Y)
-      .onTrue(new Shoot(m_cannon, 0.5, -1));
+      .onTrue(new InstantCommand(() -> m_cannon.shoot(-1)));
 
     new JoystickButton(m_mainStick, Constants.OIConstants.X)
-      .onTrue(new Shoot(m_cannon, 0.5, 1));
+      .onTrue(new InstantCommand(() -> m_cannon.shoot(1)));
 
     new JoystickButton(m_mainStick, Constants.OIConstants.A)
-      .onTrue(
-        new Shoot(m_cannon, 0.05, 2)
-      );
+      .onTrue(new InstantCommand(() -> m_cannon.shoot(2)));
+
 
     new JoystickButton(m_mainStick, Constants.OIConstants.B)
-      .onTrue(
-        new Shoot(m_cannon, 0.05, 3)
-      );
+      .onTrue(new InstantCommand(() -> m_cannon.shoot(3)));
+
       
     new JoystickButton(m_mainStick, Constants.OIConstants.LB)
     .whileTrue(

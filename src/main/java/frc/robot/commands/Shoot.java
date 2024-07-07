@@ -31,11 +31,6 @@ public class Shoot extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_timer.start();
-    if (m_num == 1) m_cannon.setValves(true, false, false);
-    else if (m_num == 2) m_cannon.setValves(false, true, true);
-    else if (m_num == 3) m_cannon.setValves(false, false, true);
-    else if (m_num == -1) m_cannon.setValves(true, true, true);
 
   }
 
@@ -47,14 +42,12 @@ public class Shoot extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_timer.stop();
-    m_cannon.setValves(false, false, false);
-    m_timer.reset();
+
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return m_timer.get() >= m_duration;
+    return true;
   }
 }
