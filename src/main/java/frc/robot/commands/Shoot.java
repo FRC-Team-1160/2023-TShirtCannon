@@ -18,7 +18,6 @@ public class Shoot extends Command {
   private Cannon m_cannon;
   private Timer m_timer;
   private double interval;
-  private int m_num;
 
   public Shoot(Cannon cannon, double interval) {
     // Use addRequirements() here to declare subsystem dependencies.

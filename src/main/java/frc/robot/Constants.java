@@ -36,7 +36,7 @@ public final class Constants {
         public static final int PCM = 4;
     }
 
-    public static final class OIConstants {
+    public static final class OIConstants { //LOGITECH
         public static final int mainStickPort = 2;
 
         public static final int A = 1;
