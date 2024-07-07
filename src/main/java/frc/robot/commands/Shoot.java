@@ -17,37 +17,42 @@ public class Shoot extends Command {
    */
   private Cannon m_cannon;
   private Timer m_timer;
-  private double m_duration;
+  private double interval;
   private int m_num;
 
-  public Shoot(Cannon cannon, double duration, int num) {
+  public Shoot(Cannon cannon, double interval) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_cannon = cannon;
     m_timer = new Timer();
-    m_duration = duration;
-    m_num = num;
+    this.interval = interval;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
+    m_timer.start();
+    m_cannon.shoot(1);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if (m_timer.get() >= interval){
+      m_cannon.shoot(2);
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
+    m_cannon.shoot(3);
+    m_timer.stop();
+    m_timer.reset();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return m_timer.get() >= (interval * 2);
   }
 }
