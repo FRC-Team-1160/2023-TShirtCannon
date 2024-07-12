@@ -30,10 +30,13 @@ public final class Constants {
 
 
         //Valves still not controllable
-        public static final int VALVE_1 = 0; 
+        public static final int VALVE_1 = 0;
+        public static final int VALVE_2 = 1; 
+        public static final int VALVE_3 = 2;
+        public static final int PCM = 4;
     }
 
-    public static final class OIConstants {
+    public static final class OIConstants { //LOGITECH
         public static final int mainStickPort = 2;
 
         public static final int A = 1;

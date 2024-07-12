@@ -21,8 +21,9 @@ public class Cannon extends SubsystemBase {
   /**
    * Creates a new Air.
    */
-	private CANSparkMax m_pM;
-	private Solenoid m_v1, m_v2, m_v3;
+	public CANSparkMax m_pM;
+	public Solenoid m_v1, m_v2, m_v3;
+
 	double setpoint;
 
 	PIDController pid = new PIDController(0.15, 0, 0);
@@ -37,12 +38,16 @@ public class Cannon extends SubsystemBase {
 	}
 	
 	private Cannon(){
-		m_v1 = new Solenoid(PneumaticsModuleType.CTREPCM, PortConstants.VALVE_1);
-		//m_v2 = new Solenoid(PneumaticsModuleType.REVPH, PortConstants.VALVE_2);
-		//m_v3 = new Solenoid(PneumaticsModuleType.REVPH, PortConstants.VALVE_3);
+		m_v1 = new Solenoid(PortConstants.PCM, PneumaticsModuleType.CTREPCM, PortConstants.VALVE_1);
+		m_v2 = new Solenoid(PortConstants.PCM, PneumaticsModuleType.CTREPCM, PortConstants.VALVE_2);
+		m_v3 = new Solenoid(PortConstants.PCM, PneumaticsModuleType.CTREPCM, PortConstants.VALVE_3);
+
+		m_v1.setPulseDuration(0.5);
+		m_v2.setPulseDuration(0.5);
+		m_v3.setPulseDuration(0.5);
+
 		m_pM = new CANSparkMax(PortConstants.PITCH_MOTOR, MotorType.kBrushless);
 		setpoint = m_pM.getEncoder().getPosition();
-		SmartDashboard.putNumber("kP", pid.getP());
 	}
 
 	public void setValves(boolean v1, boolean v2, boolean v3){
@@ -50,6 +55,28 @@ public class Cannon extends SubsystemBase {
 		m_v1.set(v1);
 		//m_v2.set(v2);
 		//m_v3.set(v3);
+	}
+
+	public void shoot(boolean v1, boolean v2, boolean v3){
+		if (v1) m_v1.startPulse();
+		if (v2) m_v2.startPulse();
+		if (v3) m_v3.startPulse();
+	}
+
+	public void shoot(int num){
+		switch(num) {
+			case 1: m_v1.startPulse();
+			break;
+			case 2: m_v2.startPulse();
+			break;
+			case 3: m_v3.startPulse();
+			break;
+			case -1:
+			m_v1.startPulse();
+			m_v2.startPulse();
+			m_v3.startPulse();
+		}
+
 	}
 
 	public void moveAngle(double amount){
