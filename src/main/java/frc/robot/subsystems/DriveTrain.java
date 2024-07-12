@@ -38,8 +38,16 @@ public class DriveTrain extends SubsystemBase {
 
   public void tankDrive(double x, double z, double speed) {
     if (Math.abs(x) < 0.1) x = 0;
-    double r = speed * (-x+z);
-    double l = speed * (x+z);
+    x *= speed;
+    if (Math.abs(z) < 0.1) z = 0;
+    z *= 0.25;
+    
+    double r = (-x+z);
+    double l = (x+z);
+
+    if (Math.abs(l) > 1) l = Math.signum(l);
+    if (Math.abs(r) > 1) r = Math.signum(r);
+
     m_bL.set(l);
     m_mL.set(l);
     m_fL.set(l);
@@ -47,6 +55,9 @@ public class DriveTrain extends SubsystemBase {
     m_bR.set(r);
     m_mR.set(r);
     m_fR.set(r);
+
+    SmartDashboard.putNumber("Left Tank Speed", l);
+    SmartDashboard.putNumber("Right Tank Speed", r);
 
 	}
 
