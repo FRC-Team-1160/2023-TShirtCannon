@@ -25,6 +25,8 @@ public class Cannon extends SubsystemBase {
 	public Solenoid m_v1, m_v2, m_v3;
 
 	double setpoint;
+	double zero;
+	public boolean override;
 
 	PIDController pid = new PIDController(0.15, 0, 0);
 
@@ -38,6 +40,7 @@ public class Cannon extends SubsystemBase {
 	}
 	
 	private Cannon(){
+
 		m_v1 = new Solenoid(PortConstants.PCM, PneumaticsModuleType.CTREPCM, PortConstants.VALVE_1);
 		m_v2 = new Solenoid(PortConstants.PCM, PneumaticsModuleType.CTREPCM, PortConstants.VALVE_2);
 		m_v3 = new Solenoid(PortConstants.PCM, PneumaticsModuleType.CTREPCM, PortConstants.VALVE_3);
@@ -47,34 +50,43 @@ public class Cannon extends SubsystemBase {
 		m_v3.setPulseDuration(0.5);
 
 		m_pM = new CANSparkMax(PortConstants.PITCH_MOTOR, MotorType.kBrushless);
-		setpoint = m_pM.getEncoder().getPosition();
+		zero = zeroPitch();
+
+		SmartDashboard.putBoolean("Valve 1", false);
+		SmartDashboard.putBoolean("Valve 2", false);
+		SmartDashboard.putBoolean("Valve 3", false);
+
 	}
 
 	public void setValves(boolean v1, boolean v2, boolean v3){
 		System.out.println("Setting valve");
 		m_v1.set(v1);
-		//m_v2.set(v2);
-		//m_v3.set(v3);
+		m_v2.set(v2);
+		m_v3.set(v3);
 	}
 
 	public void shoot(boolean v1, boolean v2, boolean v3){
 		if (v1) m_v1.startPulse();
 		if (v2) m_v2.startPulse();
 		if (v3) m_v3.startPulse();
+		System.out.println("shoot");
 	}
 
 	public void shoot(int num){
-		switch(num) {
-			case 1: m_v1.startPulse();
-			break;
-			case 2: m_v2.startPulse();
-			break;
-			case 3: m_v3.startPulse();
-			break;
-			case -1:
-			m_v1.startPulse();
-			m_v2.startPulse();
-			m_v3.startPulse();
+		if (!override){
+			switch(num) {
+				case 1: m_v1.startPulse();
+				break;
+				case 2: m_v2.startPulse();
+				break;
+				case 3: m_v3.startPulse();
+				break;
+				case -1:
+				m_v1.startPulse();
+				m_v2.startPulse();
+				m_v3.startPulse();
+			}
+			System.out.println("Shoot");
 		}
 
 	}
@@ -83,16 +95,34 @@ public class Cannon extends SubsystemBase {
 		setpoint += amount;
 	}
 
+	public double zeroPitch(){
+		setpoint = m_pM.getEncoder().getPosition();
+		return setpoint;
+	}
+
 	@Override
 	public void periodic() {
+		if (override){
+		  setValves(
+			SmartDashboard.getBoolean("Valve 1", false),
+			SmartDashboard.getBoolean("Valve 2", false),
+			SmartDashboard.getBoolean("Valve 3", false));
+		} else {
+		  SmartDashboard.putBoolean("Valve 1", m_v1.get());
+		  SmartDashboard.putBoolean("Valve 2", m_v2.get());
+		  SmartDashboard.putBoolean("Valve 3", m_v3.get());
+		}
+
 		SmartDashboard.putNumber("encoder_pitch_motor", m_pM.getEncoder().getPosition());
 		SmartDashboard.putNumber("setpoint", setpoint);
+		SmartDashboard.putBoolean("Cannon Override", override);
 		
-		if (setpoint - m_pM.getEncoder().getPosition() > 1) {
+		if (Math.abs(setpoint - m_pM.getEncoder().getPosition()) > 1) {
 			setpoint = m_pM.getEncoder().getPosition();
 		}
 		
 		m_pM.set(pid.calculate(m_pM.getEncoder().getPosition(), setpoint));
 		// m_pM.set(0);
+
 	}
 }

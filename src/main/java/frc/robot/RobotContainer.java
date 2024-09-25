@@ -46,7 +46,7 @@ public class RobotContainer {
         () -> m_driveTrain.tankDrive(
           -m_mainStick.getRawAxis(1),
           m_mainStick.getRawAxis(4),
-          0.5),
+          0.25),
         m_driveTrain)
       );
   }
@@ -63,14 +63,14 @@ public class RobotContainer {
       .onTrue(new InstantCommand(() -> m_cannon.shoot(-1)));
 
     new JoystickButton(m_mainStick, Constants.OIConstants.X)
-      .onTrue(new InstantCommand(() -> m_cannon.shoot(1)));
+      .onTrue(new InstantCommand(() -> m_cannon.shoot(2)));
 
     new JoystickButton(m_mainStick, Constants.OIConstants.A)
-      .onTrue(new InstantCommand(() -> m_cannon.shoot(2)));
+      .onTrue(new InstantCommand(() -> m_cannon.shoot(3)));
 
 
     new JoystickButton(m_mainStick, Constants.OIConstants.B)
-      .onTrue(new InstantCommand(() -> m_cannon.shoot(3)));
+      .onTrue(new InstantCommand(() -> m_cannon.shoot(1)));
 
       
     new JoystickButton(m_mainStick, Constants.OIConstants.LB)
@@ -81,6 +81,18 @@ public class RobotContainer {
     new JoystickButton(m_mainStick, Constants.OIConstants.RB)
     .whileTrue(
       new Angle(m_cannon, 0.1)
+    );
+
+    new JoystickButton(m_mainStick, Constants.OIConstants.START)
+    .onTrue(
+      new InstantCommand(() -> {m_cannon.override = true;})
+    );
+    new JoystickButton(m_mainStick, Constants.OIConstants.START)
+    .onFalse(
+      new InstantCommand(() -> {
+        m_cannon.override = false; 
+        m_cannon.setValves(false, false, false);
+      })
     );
 
 

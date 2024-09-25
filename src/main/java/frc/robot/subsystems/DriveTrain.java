@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
@@ -32,8 +33,9 @@ public class DriveTrain extends SubsystemBase {
     m_mR = new CANSparkMax(PortConstants.MID_RIGHT, MotorType.kBrushless);
     m_fR = new CANSparkMax(PortConstants.FRONT_RIGHT, MotorType.kBrushless);
     m_bL = new CANSparkMax(PortConstants.BACK_LEFT, MotorType.kBrushless);
-    m_fL = new CANSparkMax(PortConstants.FRONT_LEFT, MotorType.kBrushless);
+    // m_fL = new CANSparkMax(PortConstants.FRONT_LEFT, MotorType.kBrushless);
     m_mL = new CANSparkMax(PortConstants.MID_LEFT, MotorType.kBrushless);
+    // m_fR.setIdleMode(CANSparkBase.IdleMode.kCoast);
   }
 
   public void tankDrive(double x, double z, double speed) {
@@ -44,13 +46,12 @@ public class DriveTrain extends SubsystemBase {
     
     double r = (-x+z);
     double l = (x+z);
-
     if (Math.abs(l) > 1) l = Math.signum(l);
     if (Math.abs(r) > 1) r = Math.signum(r);
-
+    l *= 1.5;
     m_bL.set(l);
     m_mL.set(l);
-    m_fL.set(l);
+    // m_fL.set(l); //bad?
     
     m_bR.set(r);
     m_mR.set(r);

@@ -18,22 +18,20 @@ package frc.robot;
 public final class Constants {
     public static final class PortConstants{
 
-        public static final int PITCH_MOTOR = 2;
+        public static final int PITCH_MOTOR = 5; //1
 
-        public static final int BACK_LEFT = 3;
-        public static final int MID_LEFT = 1;
-        public static final int FRONT_LEFT = 17;
+        public static final int BACK_LEFT = 17; //4
+        public static final int MID_LEFT = 1; //10
+        public static final int FRONT_LEFT = 10; //2
 
-        public static final int BACK_RIGHT = 10;
-        public static final int MID_RIGHT = 5;
-        public static final int FRONT_RIGHT = 4;
+        public static final int BACK_RIGHT = 3; //3 good
+        public static final int MID_RIGHT = 4; //17
+        public static final int FRONT_RIGHT = 2; //5
 
-
-        //Valves still not controllable
-        public static final int VALVE_1 = 0;
-        public static final int VALVE_2 = 1; 
-        public static final int VALVE_3 = 2;
-        public static final int PCM = 4;
+        public static final int VALVE_2 = 7;
+        public static final int VALVE_3 = 6; 
+        public static final int VALVE_1 = 5;
+        public static final int PCM = 15;
     }
 
     public static final class OIConstants { //LOGITECH
@@ -46,6 +44,8 @@ public final class Constants {
 
         public static final int LB = 5;
         public static final int RB = 6;
+
+        public static final int START = 8;
 
         public static final int LX = 0;
         public static final int LY = 1;
