@@ -54,4 +54,9 @@ public final class Constants {
         public static final int RX = 4;
         public static final int RY = 5;
     }
+
+    public static final class CannonConstants {
+        public static final double PULSE_DURATION = 0.5;
+
+    }
 }

@@ -36,6 +36,9 @@ public class DriveTrain extends SubsystemBase {
     // m_fL = new CANSparkMax(PortConstants.FRONT_LEFT, MotorType.kBrushless);
     m_mL = new CANSparkMax(PortConstants.MID_LEFT, MotorType.kBrushless);
     // m_fR.setIdleMode(CANSparkBase.IdleMode.kCoast);
+
+    SmartDashboard.putNumber("Left Tank Speed", 0);
+    SmartDashboard.putNumber("Right Tank Speed", 0);
   }
 
   public void tankDrive(double x, double z, double speed) {
@@ -46,9 +49,11 @@ public class DriveTrain extends SubsystemBase {
     
     double r = (-x+z);
     double l = (x+z);
+    
+    l *= 1.5;
+    
     if (Math.abs(l) > 1) l = Math.signum(l);
     if (Math.abs(r) > 1) r = Math.signum(r);
-    l *= 1.5;
     m_bL.set(l);
     m_mL.set(l);
     // m_fL.set(l); //bad?
