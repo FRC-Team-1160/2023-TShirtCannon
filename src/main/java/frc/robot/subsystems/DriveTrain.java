@@ -11,6 +11,7 @@ import com.revrobotics.CANSparkBase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.PortConstants;
@@ -21,6 +22,7 @@ public class DriveTrain extends SubsystemBase {
    */
   private static DriveTrain m_instance;
   private CANSparkMax m_bL, m_mL, m_fL, m_bR, m_mR, m_fR;
+  public SlewRateLimiter limiter = new SlewRateLimiter(0.5); 
 
   public static DriveTrain getInstance(){
 		if(m_instance == null)
