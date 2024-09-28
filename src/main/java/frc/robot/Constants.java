@@ -27,10 +27,10 @@ public final class Constants {
         public static final int BACK_RIGHT = 3; //3 good
         public static final int MID_RIGHT = 4; //17
         public static final int FRONT_RIGHT = 2; //5
-
-        public static final int VALVE_2 = 7;
-        public static final int VALVE_3 = 6; 
+        
         public static final int VALVE_1 = 5;
+        public static final int VALVE_3 = 6;
+        public static final int VALVE_2 = 7;
         public static final int PCM = 15;
     }
 
@@ -57,6 +57,5 @@ public final class Constants {
 
     public static final class CannonConstants {
         public static final double PULSE_DURATION = 0.5;
-
     }
 }

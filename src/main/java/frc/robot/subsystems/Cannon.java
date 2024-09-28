@@ -19,9 +19,6 @@ import frc.robot.Constants.CannonConstants;
 import frc.robot.Constants.PortConstants;
 
 public class Cannon extends SubsystemBase {
-  /**
-   * Creates a new Air.
-   */
 	public CANSparkMax m_pM;
 	public Solenoid m_v1, m_v2, m_v3;
 
@@ -54,12 +51,6 @@ public class Cannon extends SubsystemBase {
 
 		zero = setPitch();
 
-		SmartDashboard.putNumber("ConversionFactor", m_pM.getEncoder().getPositionConversionFactor());
-
-		SmartDashboard.putBoolean("Valve 1", false);
-		SmartDashboard.putBoolean("Valve 2", false);
-		SmartDashboard.putBoolean("Valve 3", false);
-
 	}
 
 	public void setValves(boolean v1, boolean v2, boolean v3){
@@ -67,9 +58,10 @@ public class Cannon extends SubsystemBase {
 		m_v1.set(v1);
 		m_v2.set(v2);
 		m_v3.set(v3);
-	}
 
-	public void shoot(boolean v1, boolean v2, boolean v3){
+		
+		
+	}	public void shoot(boolean v1, boolean v2, boolean v3){
 		if (v1) m_v1.startPulse();
 		if (v2) m_v2.startPulse();
 		if (v3) m_v3.startPulse();
@@ -79,16 +71,20 @@ public class Cannon extends SubsystemBase {
 	public void shoot(int num){
 		if (!override){
 			switch(num) {
-				case 1: m_v1.startPulse();
-				break;
-				case 2: m_v2.startPulse();
-				break;
-				case 3: m_v3.startPulse();
-				break;
+				case 1:
+					m_v1.startPulse();
+					break;
+				case 2:
+					m_v2.startPulse();
+					break;
+				case 3:
+					m_v3.startPulse();
+					break;
 				case -1:
-				m_v1.startPulse();
-				m_v2.startPulse();
-				m_v3.startPulse();
+					m_v1.startPulse();
+					m_v2.startPulse();
+					m_v3.startPulse();
+					break;
 			}
 			System.out.println("Shoot");
 		}
@@ -112,9 +108,9 @@ public class Cannon extends SubsystemBase {
 			SmartDashboard.getBoolean("Valve 2", false),
 			SmartDashboard.getBoolean("Valve 3", false));
 		} else {
-		  SmartDashboard.putBoolean("Valve 1", m_v1.get());
-		  SmartDashboard.putBoolean("Valve 2", m_v2.get());
-		  SmartDashboard.putBoolean("Valve 3", m_v3.get());
+			SmartDashboard.putBoolean("Valve 1", m_v1.get());
+			SmartDashboard.putBoolean("Valve 2", m_v2.get());
+			SmartDashboard.putBoolean("Valve 3", m_v3.get());
 		}
 		double encoder_pos = m_pM.getEncoder().getPosition();
 		SmartDashboard.putNumber("encoder_pitch_motor", encoder_pos);
