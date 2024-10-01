@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.Angle;
 import frc.robot.commands.Shoot;
@@ -60,25 +61,29 @@ public class RobotContainer {
 
   private void configureButtonBindings() {
     new JoystickButton(m_mainStick, Constants.OIConstants.Y)
+      .and(new JoystickButton(m_mainStick, Constants.OIConstants.LB))
       .onTrue(new InstantCommand(() -> m_cannon.shoot(-1)));
 
     new JoystickButton(m_mainStick, Constants.OIConstants.X)
+      .and(new JoystickButton(m_mainStick, Constants.OIConstants.LB))
       .onTrue(new InstantCommand(() -> m_cannon.shoot(2)));
 
     new JoystickButton(m_mainStick, Constants.OIConstants.A)
+      .and(new JoystickButton(m_mainStick, Constants.OIConstants.LB))
       .onTrue(new InstantCommand(() -> m_cannon.shoot(3)));
 
-
     new JoystickButton(m_mainStick, Constants.OIConstants.B)
+      .and(new JoystickButton(m_mainStick, Constants.OIConstants.LB))
       .onTrue(new InstantCommand(() -> m_cannon.shoot(1)));
 
-      
-    new JoystickButton(m_mainStick, Constants.OIConstants.LB)
+    
+
+    new Trigger(() -> m_mainStick.getRawAxis(5) > 0.9)
     .whileTrue(
       new Angle(m_cannon, -0.1)
     );
 
-    new JoystickButton(m_mainStick, Constants.OIConstants.RB)
+    new Trigger(() -> m_mainStick.getRawAxis(5) < -0.9)
     .whileTrue(
       new Angle(m_cannon, 0.1)
     );
@@ -86,9 +91,7 @@ public class RobotContainer {
     new JoystickButton(m_mainStick, Constants.OIConstants.START)
     .onTrue(
       new InstantCommand(() -> {m_cannon.override = true;})
-    );
-    new JoystickButton(m_mainStick, Constants.OIConstants.START)
-    .onFalse(
+    ).onFalse(
       new InstantCommand(() -> {
         m_cannon.override = false; 
         m_cannon.setValves(false, false, false);

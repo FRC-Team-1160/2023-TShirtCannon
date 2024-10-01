@@ -20,6 +20,7 @@ public class DriveTrain extends SubsystemBase {
   /**
    * Creates a new DriveTrain.
    */
+
   private static DriveTrain m_instance;
   private CANSparkMax m_bL, m_mL, m_fL, m_bR, m_mR, m_fR;
   public SlewRateLimiter limiter = new SlewRateLimiter(0.5); 
@@ -35,7 +36,7 @@ public class DriveTrain extends SubsystemBase {
     m_mR = new CANSparkMax(PortConstants.MID_RIGHT, MotorType.kBrushless);
     m_fR = new CANSparkMax(PortConstants.FRONT_RIGHT, MotorType.kBrushless);
     m_bL = new CANSparkMax(PortConstants.BACK_LEFT, MotorType.kBrushless);
-    // m_fL = new CANSparkMax(PortConstants.FRONT_LEFT, MotorType.kBrushless);
+    m_fL = new CANSparkMax(PortConstants.FRONT_LEFT, MotorType.kBrushless);
     m_mL = new CANSparkMax(PortConstants.MID_LEFT, MotorType.kBrushless);
     // m_fR.setIdleMode(CANSparkBase.IdleMode.kCoast);
 
@@ -44,6 +45,7 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void tankDrive(double x, double z, double speed) {
+    x = limiter.calculate(x);
     if (Math.abs(x) < 0.1) x = 0;
     x *= speed;
     if (Math.abs(z) < 0.1) z = 0;
@@ -52,20 +54,20 @@ public class DriveTrain extends SubsystemBase {
     double r = (-x+z);
     double l = (x+z);
     
-    l *= 1.5;
+    // l *= 1.5;
     
     if (Math.abs(l) > 1) l = Math.signum(l);
     if (Math.abs(r) > 1) r = Math.signum(r);
-    m_bL.set(l);
-    m_mL.set(l);
-    // m_fL.set(l); //bad?
+    // m_bL.set(l);
+    // m_mL.set(l);
+    m_fL.set(l);  //bad?
     
-    m_bR.set(r);
-    m_mR.set(r);
-    m_fR.set(r);
+    // m_bR.set(r);
+    // m_mR.set(r);
+    // m_fR.set(r);
 
     SmartDashboard.putNumber("Left Tank Speed", l);
-    SmartDashboard.putNumber("Right Tank Speed", r);
+    SmartDashboard.putNumber("Negative Right Tank Speed", -r);
 
 	}
 

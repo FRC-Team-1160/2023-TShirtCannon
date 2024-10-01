@@ -20,7 +20,7 @@ import frc.robot.Constants.PortConstants;
 
 public class Cannon extends SubsystemBase {
 	public CANSparkMax m_pM;
-	public Solenoid m_v1, m_v2, m_v3;
+	public Solenoid m_v1, m_v2, m_v3; // TODO: switch to low, med, high
 
 	double setpoint;
 	double zero;
@@ -39,9 +39,9 @@ public class Cannon extends SubsystemBase {
 	
 	private Cannon(){
 
-		m_v1 = new Solenoid(PortConstants.PCM, PneumaticsModuleType.CTREPCM, PortConstants.VALVE_1);
-		m_v2 = new Solenoid(PortConstants.PCM, PneumaticsModuleType.CTREPCM, PortConstants.VALVE_2);
-		m_v3 = new Solenoid(PortConstants.PCM, PneumaticsModuleType.CTREPCM, PortConstants.VALVE_3);
+		m_v1 = new Solenoid(PortConstants.PCM, PneumaticsModuleType.CTREPCM, PortConstants.VALVE_1); // TODO: switch to low, med, high
+		m_v2 = new Solenoid(PortConstants.PCM, PneumaticsModuleType.CTREPCM, PortConstants.VALVE_2); // TODO: switch to low, med, high
+		m_v3 = new Solenoid(PortConstants.PCM, PneumaticsModuleType.CTREPCM, PortConstants.VALVE_3); // TODO: switch to low, med, high
 
 		m_v1.setPulseDuration(CannonConstants.PULSE_DURATION);
 		m_v2.setPulseDuration(CannonConstants.PULSE_DURATION);
@@ -61,7 +61,7 @@ public class Cannon extends SubsystemBase {
 
 		
 		
-	}	public void shoot(boolean v1, boolean v2, boolean v3){
+	}	public void shoot(boolean v1, boolean v2, boolean v3){		
 		if (v1) m_v1.startPulse();
 		if (v2) m_v2.startPulse();
 		if (v3) m_v3.startPulse();
@@ -81,10 +81,9 @@ public class Cannon extends SubsystemBase {
 					m_v3.startPulse();
 					break;
 				case -1:
-					m_v1.startPulse();
-					m_v2.startPulse();
-					m_v3.startPulse();
-					break;
+				m_v1.startPulse();
+				m_v2.startPulse();
+				m_v3.startPulse();
 			}
 			System.out.println("Shoot");
 		}
@@ -108,9 +107,9 @@ public class Cannon extends SubsystemBase {
 			SmartDashboard.getBoolean("Valve 2", false),
 			SmartDashboard.getBoolean("Valve 3", false));
 		} else {
-			SmartDashboard.putBoolean("Valve 1", m_v1.get());
-			SmartDashboard.putBoolean("Valve 2", m_v2.get());
-			SmartDashboard.putBoolean("Valve 3", m_v3.get());
+		  SmartDashboard.putBoolean("Valve 1", m_v1.get());
+		  SmartDashboard.putBoolean("Valve 2", m_v2.get());
+		  SmartDashboard.putBoolean("Valve 3", m_v3.get());
 		}
 		double encoder_pos = m_pM.getEncoder().getPosition();
 		SmartDashboard.putNumber("encoder_pitch_motor", encoder_pos);
