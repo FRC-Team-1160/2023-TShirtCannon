@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants.CannonConstants;
+import frc.robot.Constants.RobotConstants;
 import frc.robot.Constants.PortConstants;
 
 public class Cannon extends SubsystemBase {
@@ -43,9 +43,9 @@ public class Cannon extends SubsystemBase {
 		m_v2 = new Solenoid(PortConstants.PCM, PneumaticsModuleType.CTREPCM, PortConstants.VALVE_2); // TODO: switch to low, med, high
 		m_v3 = new Solenoid(PortConstants.PCM, PneumaticsModuleType.CTREPCM, PortConstants.VALVE_3); // TODO: switch to low, med, high
 
-		m_v1.setPulseDuration(CannonConstants.PULSE_DURATION);
-		m_v2.setPulseDuration(CannonConstants.PULSE_DURATION);
-		m_v3.setPulseDuration(CannonConstants.PULSE_DURATION);
+		m_v1.setPulseDuration(RobotConstants.PULSE_DURATION);
+		m_v2.setPulseDuration(RobotConstants.PULSE_DURATION);
+		m_v3.setPulseDuration(RobotConstants.PULSE_DURATION);
 
 		m_pM = new CANSparkMax(PortConstants.PITCH_MOTOR, MotorType.kBrushless);
 
@@ -113,7 +113,7 @@ public class Cannon extends SubsystemBase {
 		}
 		double encoder_pos = m_pM.getEncoder().getPosition();
 		SmartDashboard.putNumber("encoder_pitch_motor", encoder_pos);
-		SmartDashboard.putNumber("Cannon Pitch", (encoder_pos + 7.5) * 5.5); // CALIBRATE
+		SmartDashboard.putNumber("Cannon Pitch", (encoder_pos + 7.5) * RobotConstants.ENCODER_TO_DEGREES); // CALIBRATE
 		SmartDashboard.putNumber("setpoint", setpoint);
 		SmartDashboard.putBoolean("Cannon Override", override);
 		

@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -18,8 +19,10 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.Angle;
 import frc.robot.commands.Shoot;
+import frc.robot.commands.Turn;
 import frc.robot.subsystems.Cannon;
 import frc.robot.subsystems.DriveTrain;
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -58,15 +61,21 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
+  private Trigger shooterTrigger(Trigger input) {
+    return input.and(input.debounce(0.2).negate()).and(new JoystickButton(m_mainStick, Constants.OIConstants.LB));
+  }
+
 
   private void configureButtonBindings() {
     new JoystickButton(m_mainStick, Constants.OIConstants.Y)
       .and(new JoystickButton(m_mainStick, Constants.OIConstants.LB))
       .onTrue(new InstantCommand(() -> m_cannon.shoot(-1)));
 
-    new JoystickButton(m_mainStick, Constants.OIConstants.X)
-      .and(new JoystickButton(m_mainStick, Constants.OIConstants.LB))
+    shooterTrigger(new JoystickButton(m_mainStick, Constants.OIConstants.X))
       .onTrue(new InstantCommand(() -> m_cannon.shoot(2)));
+    // new JoystickButton(m_mainStick, Constants.OIConstants.X)
+    //   .and(new JoystickButton(m_mainStick, Constants.OIConstants.LB))
+    //   .onTrue(new InstantCommand(() -> m_cannon.shoot(2)));
 
     new JoystickButton(m_mainStick, Constants.OIConstants.A)
       .and(new JoystickButton(m_mainStick, Constants.OIConstants.LB))
@@ -76,7 +85,9 @@ public class RobotContainer {
       .and(new JoystickButton(m_mainStick, Constants.OIConstants.LB))
       .onTrue(new InstantCommand(() -> m_cannon.shoot(1)));
 
-    
+    new JoystickButton(m_mainStick, Constants.OIConstants.RB)
+      .onTrue(new Turn(m_driveTrain, 45));
+
 
     new Trigger(() -> m_mainStick.getRawAxis(5) > 0.9)
     .whileTrue(
