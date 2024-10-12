@@ -62,7 +62,12 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private Trigger shooterTrigger(Trigger input) {
-    return input.and(input.debounce(0.2).negate()).and(new JoystickButton(m_mainStick, Constants.OIConstants.LB));
+    Trigger active_trigger = input.negate().debounce(0.2, DebounceType.kFalling) //disables after active for 0.2 seconds
+    .and(input)
+    .and((new JoystickButton(m_mainStick, Constants.OIConstants.LB)).debounce(0.2)) //safety has to already be held
+    .debounce(0.5, DebounceType.kFalling); //prevent spamming
+
+    return active_trigger;
   }
 
 
@@ -73,20 +78,27 @@ public class RobotContainer {
 
     shooterTrigger(new JoystickButton(m_mainStick, Constants.OIConstants.X))
       .onTrue(new InstantCommand(() -> m_cannon.shoot(2)));
+
+    shooterTrigger(new JoystickButton(m_mainStick, Constants.OIConstants.A))
+      .onTrue(new InstantCommand(() -> m_cannon.shoot(3)));
+
+    shooterTrigger(new JoystickButton(m_mainStick, Constants.OIConstants.B))
+      .onTrue(new InstantCommand(() -> m_cannon.shoot(1)));
+      
     // new JoystickButton(m_mainStick, Constants.OIConstants.X)
     //   .and(new JoystickButton(m_mainStick, Constants.OIConstants.LB))
     //   .onTrue(new InstantCommand(() -> m_cannon.shoot(2)));
 
-    new JoystickButton(m_mainStick, Constants.OIConstants.A)
-      .and(new JoystickButton(m_mainStick, Constants.OIConstants.LB))
-      .onTrue(new InstantCommand(() -> m_cannon.shoot(3)));
+    // new JoystickButton(m_mainStick, Constants.OIConstants.A)
+    //   .and(new JoystickButton(m_mainStick, Constants.OIConstants.LB))
+    //   .onTrue(new InstantCommand(() -> m_cannon.shoot(3)));
 
-    new JoystickButton(m_mainStick, Constants.OIConstants.B)
-      .and(new JoystickButton(m_mainStick, Constants.OIConstants.LB))
-      .onTrue(new InstantCommand(() -> m_cannon.shoot(1)));
+    // new JoystickButton(m_mainStick, Constants.OIConstants.B)
+    //   .and(new JoystickButton(m_mainStick, Constants.OIConstants.LB))
+    //   .onTrue(new InstantCommand(() -> m_cannon.shoot(1)));
 
-    new JoystickButton(m_mainStick, Constants.OIConstants.RB)
-      .onTrue(new Turn(m_driveTrain, 45));
+    // new JoystickButton(m_mainStick, Constants.OIConstants.RB)
+    //   .onTrue(new Turn(m_driveTrain, 45));
 
 
     new Trigger(() -> m_mainStick.getRawAxis(5) > 0.9)

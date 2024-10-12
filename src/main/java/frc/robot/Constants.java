@@ -57,7 +57,8 @@ public final class Constants {
 
     public static final class RobotConstants {
         public static final double PULSE_DURATION = 0.5;
-        public static final double ENCODER_TO_DEGREES = 5.5;
+        public static final double ENCODER_TO_DEGREES = 5;
+        public static final double DRIVE_GEAR_RATIO = 18.0;
         public static final double WHEEL_DIAMETER = 7.5;
         public static final double WHEEL_BASE_WIDTH = 28;
     }

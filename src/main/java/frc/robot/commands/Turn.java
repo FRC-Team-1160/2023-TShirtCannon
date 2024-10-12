@@ -32,20 +32,22 @@ public class Turn extends Command {
     m_angle = angle;
     pid = new PIDController(0.1, 0, 0);
     filter = new SlewRateLimiter(0.5);
-    target = m_drive.m_mR.getEncoder().getPosition() + angle * (RobotConstants.WHEEL_BASE_WIDTH / RobotConstants.WHEEL_DIAMETER) / RobotConstants.ENCODER_TO_DEGREES;
+    target = m_drive.m_mR.getEncoder().getPosition() + angle * (RobotConstants.WHEEL_BASE_WIDTH / RobotConstants.WHEEL_DIAMETER) / 360 * RobotConstants.DRIVE_GEAR_RATIO;
     pid.setSetpoint(target);
   }
   //joe mama
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_drive.tankDrive(0, filter.calculate(pid.calculate(m_drive.getMiddleEncoder())), 0.25);
+    double z = filter.calculate(pid.calculate(m_drive.getMiddleEncoder()));
+    if (Math.abs(z) > 0.5) z = 0.1 * Math.signum(z);
+    m_drive.tankDrive(0.0, z, 0);
     SmartDashboard.putNumber("Turn Command PID", pid.calculate(m_drive.getMiddleEncoder()));
   }
 

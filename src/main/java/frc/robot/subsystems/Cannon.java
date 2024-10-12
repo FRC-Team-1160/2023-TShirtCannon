@@ -85,7 +85,7 @@ public class Cannon extends SubsystemBase {
 				m_v2.startPulse();
 				m_v3.startPulse();
 			}
-			System.out.println("Shoot");
+			System.out.println("Shoot" + num);
 		}
 
 	}
@@ -113,7 +113,7 @@ public class Cannon extends SubsystemBase {
 		}
 		double encoder_pos = m_pM.getEncoder().getPosition();
 		SmartDashboard.putNumber("encoder_pitch_motor", encoder_pos);
-		SmartDashboard.putNumber("Cannon Pitch", (encoder_pos + 7.5) * RobotConstants.ENCODER_TO_DEGREES); // CALIBRATE
+		SmartDashboard.putNumber("Cannon Pitch", 38 + (encoder_pos) * RobotConstants.ENCODER_TO_DEGREES); // CALIBRATE
 		SmartDashboard.putNumber("setpoint", setpoint);
 		SmartDashboard.putBoolean("Cannon Override", override);
 		

@@ -72,11 +72,12 @@ public class DriveTrain extends SubsystemBase {
 	}
 
   public double getMiddleEncoder(){
-    return m_mR.getEncoder().getPosition();
+    return m_mL.getEncoder().getPosition();
   }
 
   @Override
   public void periodic() {
     SmartDashboard.putNumber("RM encoder", getMiddleEncoder());
+    SmartDashboard.putNumber("RM Conversion", m_mL.getEncoder().getPositionConversionFactor());
   }
 }
