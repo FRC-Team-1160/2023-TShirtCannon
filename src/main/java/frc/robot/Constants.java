@@ -61,5 +61,6 @@ public final class Constants {
         public static final double DRIVE_GEAR_RATIO = 18.0;
         public static final double WHEEL_DIAMETER = 7.5;
         public static final double WHEEL_BASE_WIDTH = 28;
+        public static final double CANNON_PITCH_ZERO = 38;
     }
 }

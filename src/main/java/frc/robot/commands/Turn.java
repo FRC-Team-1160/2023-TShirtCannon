@@ -32,7 +32,7 @@ public class Turn extends Command {
     m_angle = angle;
     pid = new PIDController(0.1, 0, 0);
     filter = new SlewRateLimiter(0.5);
-    target = m_drive.m_mR.getEncoder().getPosition() + angle * (RobotConstants.WHEEL_BASE_WIDTH / RobotConstants.WHEEL_DIAMETER) / 360 * RobotConstants.DRIVE_GEAR_RATIO;
+    target = m_drive.m_mR.getEncoder().getPosition() + (angle / 360) * (RobotConstants.WHEEL_BASE_WIDTH / RobotConstants.WHEEL_DIAMETER) * RobotConstants.DRIVE_GEAR_RATIO;
     pid.setSetpoint(target);
   }
   //joe mama

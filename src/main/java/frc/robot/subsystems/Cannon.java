@@ -99,6 +99,14 @@ public class Cannon extends SubsystemBase {
 		return setpoint;
 	}
 
+	public void resetEncoder(double setpoint){
+		m_pM.getEncoder().setPosition(setpoint);
+	}
+
+	public double getPitch(){
+		return m_pM.getEncoder().getPosition();
+	}
+
 	@Override
 	public void periodic() {
 		if (override){
@@ -113,7 +121,7 @@ public class Cannon extends SubsystemBase {
 		}
 		double encoder_pos = m_pM.getEncoder().getPosition();
 		SmartDashboard.putNumber("encoder_pitch_motor", encoder_pos);
-		SmartDashboard.putNumber("Cannon Pitch", 38 + (encoder_pos) * RobotConstants.ENCODER_TO_DEGREES); // CALIBRATE
+		SmartDashboard.putNumber("Cannon Pitch", RobotConstants.CANNON_PITCH_ZERO + (encoder_pos) * RobotConstants.ENCODER_TO_DEGREES); // CALIBRATE
 		SmartDashboard.putNumber("setpoint", setpoint);
 		SmartDashboard.putBoolean("Cannon Override", override);
 		

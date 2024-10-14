@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OIConstants;
+import frc.robot.Constants.RobotConstants;
 import frc.robot.commands.Angle;
 import frc.robot.commands.Shoot;
 import frc.robot.commands.Turn;
@@ -59,13 +60,14 @@ public class RobotContainer {
    * Use this method to define your button->command mappings.  Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
-   * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
+   * {@link edu.wpi.first.wpilibj2.
+   * command.button.JoystickButton}.
    */
   private Trigger shooterTrigger(Trigger input) {
     Trigger active_trigger = input.negate().debounce(0.2, DebounceType.kFalling) //disables after active for 0.2 seconds
     .and(input)
     .and((new JoystickButton(m_mainStick, Constants.OIConstants.LB)).debounce(0.2)) //safety has to already be held
-    .debounce(0.5, DebounceType.kFalling); //prevent spamming
+    .debounce(0.3, DebounceType.kFalling); //prevent spamming
 
     return active_trigger;
   }
@@ -84,7 +86,7 @@ public class RobotContainer {
 
     shooterTrigger(new JoystickButton(m_mainStick, Constants.OIConstants.B))
       .onTrue(new InstantCommand(() -> m_cannon.shoot(1)));
-      
+
     // new JoystickButton(m_mainStick, Constants.OIConstants.X)
     //   .and(new JoystickButton(m_mainStick, Constants.OIConstants.LB))
     //   .onTrue(new InstantCommand(() -> m_cannon.shoot(2)));
@@ -120,6 +122,12 @@ public class RobotContainer {
         m_cannon.setValves(false, false, false);
       })
     );
+
+    new Trigger(() -> m_mainStick.getRawAxis(5) < -0.9)
+      .and(() -> m_cannon.getPitch() < -6.0)
+      .debounce(5.0).onTrue(
+        new InstantCommand(() -> {m_cannon.resetEncoder(-RobotConstants.CANNON_PITCH_ZERO / RobotConstants.ENCODER_TO_DEGREES);})
+      );
 
 
     //whenPressed() deprecated

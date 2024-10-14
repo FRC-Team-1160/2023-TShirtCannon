@@ -23,7 +23,7 @@ public class DriveTrain extends SubsystemBase {
 
   private static DriveTrain m_instance;
   public CANSparkMax m_bL, m_mL, m_fL, m_bR, m_mR, m_fR;
-  public SlewRateLimiter limiter = new SlewRateLimiter(0.5); 
+  public SlewRateLimiter limiter = new SlewRateLimiter(0.8); 
 
   public static DriveTrain getInstance(){
 		if(m_instance == null)
