@@ -27,28 +27,35 @@ public class Turn extends Command {
   private double target;
 
   public Turn(DriveTrain drive, double angle) {
+    addRequirements(drive);
     // Use addRequirements() here to declare subsystem dependencies.
     m_drive = drive;
     m_angle = angle;
-    pid = new PIDController(0.1, 0, 0);
-    filter = new SlewRateLimiter(0.5);
-    target = m_drive.m_mR.getEncoder().getPosition() + (angle / 360) * (RobotConstants.WHEEL_BASE_WIDTH / RobotConstants.WHEEL_DIAMETER) * RobotConstants.DRIVE_GEAR_RATIO;
-    pid.setSetpoint(target);
+    
   }
   //joe mama
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-
+    pid = new PIDController(0.3, 0, 0);
+    filter = new SlewRateLimiter(1);
+    SmartDashboard.putString("Test2", "Started");
+    target = m_drive.getMiddleEncoder() + ((m_angle / 360.0) * (RobotConstants.WHEEL_BASE_WIDTH / RobotConstants.WHEEL_DIAMETER) * RobotConstants.DRIVE_GEAR_RATIO);
+    pid.setSetpoint(target);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double z = filter.calculate(pid.calculate(m_drive.getMiddleEncoder()));
-    if (Math.abs(z) > 0.5) z = 0.1 * Math.signum(z);
+    double z = (pid.calculate(m_drive.getMiddleEncoder()));
+    if (Math.abs(z) > 1) z = 1 * Math.signum(z);
+    z = filter.calculate(z);
     m_drive.tankDrive(0.0, z, 0);
+    SmartDashboard.putNumber("Turn Command Setpoint", target);
     SmartDashboard.putNumber("Turn Command PID", pid.calculate(m_drive.getMiddleEncoder()));
+    SmartDashboard.putString("Test2", "Running");
+
+
   }
 
   // Called once the command ends or is interrupted.
@@ -56,12 +63,14 @@ public class Turn extends Command {
   public void end(boolean interrupted) {
     //m_timer.stop();
     //m_timer.reset();
+    SmartDashboard.putString("Test2", "End");
+
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-
-    return Math.abs(pid.getPositionError()) < 10 / RobotConstants.ENCODER_TO_DEGREES;//m_timer.get() >= 0.05;
+    SmartDashboard.putNumber("Test1", pid.getPositionError());
+    return Math.abs(pid.getPositionError()) < (3.0 / 360.0) * RobotConstants.DRIVE_GEAR_RATIO;//m_timer.get() >= 0.05;
   }
 }
