@@ -51,7 +51,7 @@ public class RobotContainer {
         () -> m_driveTrain.tankDrive(
           -m_mainStick.getRawAxis(1),
           m_mainStick.getRawAxis(4),
-          0.15),
+          0.25),
         m_driveTrain)
       );
   }
@@ -99,8 +99,8 @@ public class RobotContainer {
     //   .and(new JoystickButton(m_mainStick, Constants.OIConstants.LB))
     //   .onTrue(new InstantCommand(() -> m_cannon.shoot(1)));
 
-    new JoystickButton(m_mainStick, Constants.OIConstants.RB)
-      .onTrue(new Turn(m_driveTrain, 45));
+    // new JoystickButton(m_mainStick, Constants.OIConstants.RB)
+    //   .onTrue(new Turn(m_driveTrain, 45));
 
 
     new Trigger(() -> m_mainStick.getRawAxis(5) > 0.9)

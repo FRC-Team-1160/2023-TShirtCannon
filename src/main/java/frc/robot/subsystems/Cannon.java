@@ -18,6 +18,9 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.RobotConstants;
 import frc.robot.Constants.PortConstants;
 
+/**
+ * The Subsystem class representing the cannon.
+ */
 public class Cannon extends SubsystemBase {
 	public CANSparkMax m_pM;
 	public Solenoid m_v1, m_v2, m_v3; // TODO: switch to low, med, high
@@ -61,7 +64,8 @@ public class Cannon extends SubsystemBase {
 
 		
 		
-	}	public void shoot(boolean v1, boolean v2, boolean v3){		
+	}	
+	public void shoot(boolean v1, boolean v2, boolean v3){		
 		if (v1) m_v1.startPulse();
 		if (v2) m_v2.startPulse();
 		if (v3) m_v3.startPulse();
