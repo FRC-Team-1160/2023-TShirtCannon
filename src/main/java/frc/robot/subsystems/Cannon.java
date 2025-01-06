@@ -21,6 +21,7 @@ import frc.robot.Constants.PortConstants;
 /**
  * The Subsystem class representing the cannon.
  */
+
 public class Cannon extends SubsystemBase {
 	public CANSparkMax m_pM;
 	public Solenoid m_v1, m_v2, m_v3; // TODO: switch to low, med, high
