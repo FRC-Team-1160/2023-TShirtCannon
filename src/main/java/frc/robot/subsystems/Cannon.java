@@ -21,7 +21,6 @@ import frc.robot.Constants.PortConstants;
 /**
  * The Subsystem class representing the cannon.
  */
-
 public class Cannon extends SubsystemBase {
 	public CANSparkMax m_pM;
 	public Solenoid m_v1, m_v2, m_v3; // TODO: switch to low, med, high
@@ -57,6 +56,12 @@ public class Cannon extends SubsystemBase {
 
 	}
 
+	/**
+	 * Actuate valves based on boolean input
+	 * @param v1 State of valve 1
+	 * @param v2 State of valve 2
+	 * @param v3 State of valve 3
+	 */
 	public void setValves(boolean v1, boolean v2, boolean v3){
 		System.out.println("Setting valve");
 		m_v1.set(v1);
