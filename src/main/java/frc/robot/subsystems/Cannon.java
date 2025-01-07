@@ -71,12 +71,25 @@ public class Cannon extends SubsystemBase {
 		
 		
 	}	
+
+
+	/**
+	 * Shoots the cannons based on the boolean parameters.
+	 * @param v1
+	 * @param v2
+	 * @param v3
+	 */
 	public void shoot(boolean v1, boolean v2, boolean v3){		
 		if (v1) m_v1.startPulse();
 		if (v2) m_v2.startPulse();
 		if (v3) m_v3.startPulse();
 		System.out.println("shoot");
 	}
+
+	/**
+	 * Manual Override: Shoots one cannon or all, based on an integer; Shoots all on -1.
+	 * @param num
+	 */
 
 	public void shoot(int num){
 		if (!override){
@@ -100,22 +113,46 @@ public class Cannon extends SubsystemBase {
 
 	}
 
+	/**
+	 * Changes the vertical angle of the cannons based on a double.
+	 * @param amount
+	 */
+
 	public void moveAngle(double amount){
 		setpoint += amount;
 	}
+
+	/**
+	 * Runs when the robot starts to set setpoint to the current angle; This prevents the robot from attempting to return to the angle it was set to before it was turned off.
+	 * @return
+	 */
 
 	public double setPitch(){
 		setpoint = m_pM.getEncoder().getPosition();
 		return setpoint;
 	}
 
+	/**
+	 * Sets the vertical angle of the cannons based on a double parameter.
+	 * @param setpoint
+	 */
+
 	public void resetEncoder(double setpoint){
 		m_pM.getEncoder().setPosition(setpoint);
 	}
 
+	/**
+	 * Returns the vertical angle of the cannon.
+	 * @return
+	 */
+
 	public double getPitch(){
 		return m_pM.getEncoder().getPosition();
 	}
+
+	/**
+	 * Runs constantly, checks if the cannon related pressed down and runs the relevant functions; Checks cannon angle.
+	 */
 
 	@Override
 	public void periodic() {

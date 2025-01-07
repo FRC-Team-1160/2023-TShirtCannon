@@ -154,9 +154,13 @@ loadScripts(document, 'script');</script>
 <dt><a href="frc/robot/subsystems/DriveTrain.html#getInstance()" class="member-name-link">getInstance()</a> - Static method in class frc.robot.subsystems.<a href="frc/robot/subsystems/DriveTrain.html" title="class in frc.robot.subsystems">DriveTrain</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="frc/robot/subsystems/Cannon.html#getPitch()" class="member-name-link">getPitch()</a> - Method in class frc.robot.subsystems.<a href="frc/robot/subsystems/Cannon.html" title="class in frc.robot.subsystems">Cannon</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Returns the vertical angle of the cannon.</div>
+</dd>
 <dt><a href="frc/robot/subsystems/DriveTrain.html#getRightEncoder()" class="member-name-link">getRightEncoder()</a> - Method in class frc.robot.subsystems.<a href="frc/robot/subsystems/DriveTrain.html" title="class in frc.robot.subsystems">DriveTrain</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Gets the position of the mid-right motor.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
@@ -227,7 +231,9 @@ loadScripts(document, 'script');</script>
 <dt><a href="frc/robot/Constants.PortConstants.html#MID_RIGHT" class="member-name-link">MID_RIGHT</a> - Static variable in class frc.robot.<a href="frc/robot/Constants.PortConstants.html" title="class in frc.robot">Constants.PortConstants</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="frc/robot/subsystems/Cannon.html#moveAngle(double)" class="member-name-link">moveAngle(double)</a> - Method in class frc.robot.subsystems.<a href="frc/robot/subsystems/Cannon.html" title="class in frc.robot.subsystems">Cannon</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Changes the vertical angle of the cannons based on a double.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:O">O</h2>
 <dl class="index">
@@ -241,9 +247,13 @@ loadScripts(document, 'script');</script>
 <dt><a href="frc/robot/Constants.PortConstants.html#PCM" class="member-name-link">PCM</a> - Static variable in class frc.robot.<a href="frc/robot/Constants.PortConstants.html" title="class in frc.robot">Constants.PortConstants</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="frc/robot/subsystems/Cannon.html#periodic()" class="member-name-link">periodic()</a> - Method in class frc.robot.subsystems.<a href="frc/robot/subsystems/Cannon.html" title="class in frc.robot.subsystems">Cannon</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Runs constantly, checks if the cannon related pressed down and runs the relevant functions; Checks cannon angle.</div>
+</dd>
 <dt><a href="frc/robot/subsystems/DriveTrain.html#periodic()" class="member-name-link">periodic()</a> - Method in class frc.robot.subsystems.<a href="frc/robot/subsystems/DriveTrain.html" title="class in frc.robot.subsystems">DriveTrain</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Runs constantly, checks for the mid right motor</div>
+</dd>
 <dt><a href="frc/robot/Constants.PortConstants.html#PITCH_MOTOR" class="member-name-link">PITCH_MOTOR</a> - Static variable in class frc.robot.<a href="frc/robot/Constants.PortConstants.html" title="class in frc.robot">Constants.PortConstants</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="frc/robot/Constants.PortConstants.html#%3Cinit%3E()" class="member-name-link">PortConstants()</a> - Constructor for class frc.robot.<a href="frc/robot/Constants.PortConstants.html" title="class in frc.robot">Constants.PortConstants</a></dt>
@@ -256,7 +266,9 @@ loadScripts(document, 'script');</script>
 <dt><a href="frc/robot/Constants.OIConstants.html#RB" class="member-name-link">RB</a> - Static variable in class frc.robot.<a href="frc/robot/Constants.OIConstants.html" title="class in frc.robot">Constants.OIConstants</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="frc/robot/subsystems/Cannon.html#resetEncoder(double)" class="member-name-link">resetEncoder(double)</a> - Method in class frc.robot.subsystems.<a href="frc/robot/subsystems/Cannon.html" title="class in frc.robot.subsystems">Cannon</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Sets the vertical angle of the cannons based on a double parameter.</div>
+</dd>
 <dt><a href="frc/robot/Robot.html" class="type-name-link" title="class in frc.robot">Robot</a> - Class in <a href="frc/robot/package-summary.html">frc.robot</a></dt>
 <dd>
 <div class="block">The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -293,15 +305,21 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
 <dt><a href="frc/robot/subsystems/Cannon.html#setPitch()" class="member-name-link">setPitch()</a> - Method in class frc.robot.subsystems.<a href="frc/robot/subsystems/Cannon.html" title="class in frc.robot.subsystems">Cannon</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Runs when the robot starts to set setpoint to the current angle; This prevents the robot from attempting to return to the angle it was set to before it was turned off.</div>
+</dd>
 <dt><a href="frc/robot/subsystems/Cannon.html#setValves(boolean,boolean,boolean)" class="member-name-link">setValves(boolean, boolean, boolean)</a> - Method in class frc.robot.subsystems.<a href="frc/robot/subsystems/Cannon.html" title="class in frc.robot.subsystems">Cannon</a></dt>
 <dd>
 <div class="block">Actuate valves based on boolean input</div>
 </dd>
 <dt><a href="frc/robot/subsystems/Cannon.html#shoot(boolean,boolean,boolean)" class="member-name-link">shoot(boolean, boolean, boolean)</a> - Method in class frc.robot.subsystems.<a href="frc/robot/subsystems/Cannon.html" title="class in frc.robot.subsystems">Cannon</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Shoots the cannons based on the boolean parameters.</div>
+</dd>
 <dt><a href="frc/robot/subsystems/Cannon.html#shoot(int)" class="member-name-link">shoot(int)</a> - Method in class frc.robot.subsystems.<a href="frc/robot/subsystems/Cannon.html" title="class in frc.robot.subsystems">Cannon</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Manual Override: Shoots one cannon or all, based on an integer; Shoots all on -1.</div>
+</dd>
 <dt><a href="frc/robot/commands/Shoot.html" class="type-name-link" title="class in frc.robot.commands">Shoot</a> - Class in <a href="frc/robot/commands/package-summary.html">frc.robot.commands</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="frc/robot/commands/Shoot.html#%3Cinit%3E(frc.robot.subsystems.Cannon,double)" class="member-name-link">Shoot(Cannon, double)</a> - Constructor for class frc.robot.commands.<a href="frc/robot/commands/Shoot.html" title="class in frc.robot.commands">Shoot</a></dt>
@@ -312,7 +330,9 @@ loadScripts(document, 'script');</script>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
 <dt><a href="frc/robot/subsystems/DriveTrain.html#tankDrive(double,double,double)" class="member-name-link">tankDrive(double, double, double)</a> - Method in class frc.robot.subsystems.<a href="frc/robot/subsystems/DriveTrain.html" title="class in frc.robot.subsystems">DriveTrain</a></dt>
-<dd>&nbsp;</dd>
+<dd>
+<div class="block">Takes in three doubles: whether the robot is going forward or backward, the turning rate and direction, and the speed.</div>
+</dd>
 <dt><a href="frc/robot/Robot.html#teleopInit()" class="member-name-link">teleopInit()</a> - Method in class frc.robot.<a href="frc/robot/Robot.html" title="class in frc.robot">Robot</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="frc/robot/Robot.html#teleopPeriodic()" class="member-name-link">teleopPeriodic()</a> - Method in class frc.robot.<a href="frc/robot/Robot.html" title="class in frc.robot">Robot</a></dt>

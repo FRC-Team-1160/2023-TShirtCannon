@@ -44,6 +44,13 @@ public class DriveTrain extends SubsystemBase {
     SmartDashboard.putNumber("Right Tank Speed", 0);
   }
 
+  /**
+   * Takes in three doubles: whether the robot is going forward or backward, the turning rate and direction, and the speed.
+   * @param x
+   * @param z
+   * @param speed
+   */
+
   public void tankDrive(double x, double z, double speed) {
     x = limiter.calculate(x);
     if (Math.abs(x) < 0.1) x = 0;
@@ -71,9 +78,18 @@ public class DriveTrain extends SubsystemBase {
 
 	}
 
+  /**
+   * Gets the position of the mid-right motor.
+   * @return
+   */
+
   public double getRightEncoder(){
     return m_mR.getEncoder().getPosition();
   }
+
+/**
+ * Runs constantly, checks for the mid right motor
+ */
 
   @Override
   public void periodic() {

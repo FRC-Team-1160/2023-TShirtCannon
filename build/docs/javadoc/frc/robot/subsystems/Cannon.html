@@ -130,19 +130,29 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPitch()" class="member-name-link">getPitch</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the vertical angle of the cannon.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#moveAngle(double)" class="member-name-link">moveAngle</a><wbr>(double&nbsp;amount)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Changes the vertical angle of the cannons based on a double.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#periodic()" class="member-name-link">periodic</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Runs constantly, checks if the cannon related pressed down and runs the relevant functions; Checks cannon angle.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resetEncoder(double)" class="member-name-link">resetEncoder</a><wbr>(double&nbsp;setpoint)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the vertical angle of the cannons based on a double parameter.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPitch()" class="member-name-link">setPitch</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Runs when the robot starts to set setpoint to the current angle; This prevents the robot from attempting to return to the angle it was set to before it was turned off.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setValves(boolean,boolean,boolean)" class="member-name-link">setValves</a><wbr>(boolean&nbsp;v1,
  boolean&nbsp;v2,
@@ -154,10 +164,14 @@ loadScripts(document, 'script');</script>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#shoot(boolean,boolean,boolean)" class="member-name-link">shoot</a><wbr>(boolean&nbsp;v1,
  boolean&nbsp;v2,
  boolean&nbsp;v3)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Shoots the cannons based on the boolean parameters.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#shoot(int)" class="member-name-link">shoot</a><wbr>(int&nbsp;num)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Manual Override: Shoots one cannon or all, based on an integer; Shoots all on -1.</div>
+</div>
 </div>
 </div>
 </div>
@@ -246,42 +260,73 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">shoot</span><wbr><span class="parameters">(boolean&nbsp;v1,
  boolean&nbsp;v2,
  boolean&nbsp;v3)</span></div>
+<div class="block">Shoots the cannons based on the boolean parameters.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>v1</code> - </dd>
+<dd><code>v2</code> - </dd>
+<dd><code>v3</code> - </dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="shoot(int)">
 <h3>shoot</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">shoot</span><wbr><span class="parameters">(int&nbsp;num)</span></div>
+<div class="block">Manual Override: Shoots one cannon or all, based on an integer; Shoots all on -1.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>num</code> - </dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="moveAngle(double)">
 <h3>moveAngle</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">moveAngle</span><wbr><span class="parameters">(double&nbsp;amount)</span></div>
+<div class="block">Changes the vertical angle of the cannons based on a double.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>amount</code> - </dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setPitch()">
 <h3>setPitch</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">setPitch</span>()</div>
+<div class="block">Runs when the robot starts to set setpoint to the current angle; This prevents the robot from attempting to return to the angle it was set to before it was turned off.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="resetEncoder(double)">
 <h3>resetEncoder</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">resetEncoder</span><wbr><span class="parameters">(double&nbsp;setpoint)</span></div>
+<div class="block">Sets the vertical angle of the cannons based on a double parameter.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>setpoint</code> - </dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getPitch()">
 <h3>getPitch</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getPitch</span>()</div>
+<div class="block">Returns the vertical angle of the cannon.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="periodic()">
 <h3>periodic</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">periodic</span>()</div>
+<div class="block">Runs constantly, checks if the cannon related pressed down and runs the relevant functions; Checks cannon angle.</div>
 </section>
 </li>
 </ul>
