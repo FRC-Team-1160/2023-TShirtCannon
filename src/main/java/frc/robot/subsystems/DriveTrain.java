@@ -17,13 +17,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.PortConstants;
 
 public class DriveTrain extends SubsystemBase {
+
   /**
    * Creates a new DriveTrain.
    */
-
   private static DriveTrain m_instance;
   public CANSparkMax m_bL, m_mL, m_fL, m_bR, m_mR, m_fR;
-  public SlewRateLimiter limiter = new SlewRateLimiter(0.8); 
+  public SlewRateLimiter limiter = new SlewRateLimiter(1);
 
   public static DriveTrain getInstance(){
 		if(m_instance == null)
@@ -50,7 +50,6 @@ public class DriveTrain extends SubsystemBase {
    * @param z
    * @param speed
    */
-
   public void tankDrive(double x, double z, double speed) {
     x = limiter.calculate(x);
     if (Math.abs(x) < 0.1) x = 0;
@@ -60,8 +59,6 @@ public class DriveTrain extends SubsystemBase {
     
     double r = (-x+z);
     double l = (x+z);
-    
-    // l *= 1.5;
     
     if (Math.abs(l) > 1) l = Math.signum(l);
     if (Math.abs(r) > 1) r = Math.signum(r);
@@ -82,15 +79,18 @@ public class DriveTrain extends SubsystemBase {
    * Gets the position of the mid-right motor.
    * @return
    */
-
   public double getRightEncoder(){
     return m_mR.getEncoder().getPosition();
   }
 
-/**
- * Runs constantly, checks for the mid right motor
- */
+  // 
+  public void pidTurn() {
 
+  }
+
+/**
+ * Runs constantly, checks for the mid right motor.
+ */
   @Override
   public void periodic() {
     SmartDashboard.putNumber("RM encoder", getRightEncoder());

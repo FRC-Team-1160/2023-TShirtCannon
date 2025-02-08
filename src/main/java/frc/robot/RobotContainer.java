@@ -51,7 +51,7 @@ public class RobotContainer {
         () -> m_driveTrain.tankDrive(
           -m_mainStick.getRawAxis(1),
           m_mainStick.getRawAxis(4),
-          0.25),
+          .4),
         m_driveTrain)
       );
   }

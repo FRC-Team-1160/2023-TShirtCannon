@@ -90,7 +90,6 @@ public class Cannon extends SubsystemBase {
 	 * Manual Override: Shoots one cannon or all, based on an integer; Shoots all on -1.
 	 * @param num
 	 */
-
 	public void shoot(int num){
 		if (!override){
 			switch(num) {
@@ -117,7 +116,6 @@ public class Cannon extends SubsystemBase {
 	 * Changes the vertical angle of the cannons based on a double.
 	 * @param amount
 	 */
-
 	public void moveAngle(double amount){
 		setpoint += amount;
 	}
@@ -126,7 +124,6 @@ public class Cannon extends SubsystemBase {
 	 * Runs when the robot starts to set setpoint to the current angle; This prevents the robot from attempting to return to the angle it was set to before it was turned off.
 	 * @return
 	 */
-
 	public double setPitch(){
 		setpoint = m_pM.getEncoder().getPosition();
 		return setpoint;
@@ -136,7 +133,6 @@ public class Cannon extends SubsystemBase {
 	 * Sets the vertical angle of the cannons based on a double parameter.
 	 * @param setpoint
 	 */
-
 	public void resetEncoder(double setpoint){
 		m_pM.getEncoder().setPosition(setpoint);
 	}
@@ -145,13 +141,12 @@ public class Cannon extends SubsystemBase {
 	 * Returns the vertical angle of the cannon.
 	 * @return
 	 */
-
 	public double getPitch(){
 		return m_pM.getEncoder().getPosition();
 	}
 
 	/**
-	 * Runs constantly, checks if the cannon related pressed down and runs the relevant functions; Checks cannon angle.
+	 * Runs constantly, checks if the cannon related button pressed down and runs the relevant functions; Checks cannon angle.
 	 */
 
 	@Override
