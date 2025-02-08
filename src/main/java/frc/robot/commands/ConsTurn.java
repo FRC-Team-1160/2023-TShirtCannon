@@ -16,22 +16,26 @@ import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants.RobotConstants;
 
-public class 45DegCommand extends Turn {
-  double target;
-  public 45DegCommand(DriveTrain drive) {
-    
-    
+public class ConsTurn extends Turn {
+  private DriveTrain m_drive;
+  private PIDController pid;
+  private double target;
+
+  public ConsTurn(DriveTrain drive) {
+    super(drive, 0);
   }
   
   @Override
   public void initialize() {
-      double target = m_drive.getRightEncoder() + ((m_angle / 360.0) * (RobotConstants.WHEEL_BASE_WIDTH / RobotConstants.WHEEL_DIAMETER) * RobotConstants.DRIVE_GEAR_RATIO) 
+    pid = new PIDController(0.3, 0, 0);
+    target = m_drive.getRightEncoder() + ((45.0 / 360.0) * (RobotConstants.WHEEL_BASE_WIDTH / RobotConstants.WHEEL_DIAMETER) * RobotConstants.DRIVE_GEAR_RATIO);
+    pid.setSetpoint(target);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
+      m_drive.tankDrive(0.0, pid.calculate(m_drive.getRightEncoder()), 0.0);
   }
 
   // Called once the command ends or is interrupted.
@@ -44,6 +48,6 @@ public class 45DegCommand extends Turn {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-
+    return false;
   }
 }

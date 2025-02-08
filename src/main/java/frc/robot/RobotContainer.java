@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import java.util.function.BooleanSupplier;
+
 import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
@@ -23,6 +25,7 @@ import frc.robot.commands.Shoot;
 import frc.robot.commands.Turn;
 import frc.robot.subsystems.Cannon;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.commands.ConsTurn;
 
 
 /**
@@ -87,6 +90,8 @@ public class RobotContainer {
     shooterTrigger(new JoystickButton(m_mainStick, Constants.OIConstants.B))
       .onTrue(new InstantCommand(() -> m_cannon.shoot(1)));
 
+
+     
     // new JoystickButton(m_mainStick, Constants.OIConstants.X)
     //   .and(new JoystickButton(m_mainStick, Constants.OIConstants.LB))
     //   .onTrue(new InstantCommand(() -> m_cannon.shoot(2)));
@@ -107,6 +112,9 @@ public class RobotContainer {
     .whileTrue(
       new Angle(m_cannon, -0.1)
     );
+
+    new Trigger(() -> Math.abs(m_mainStick.getRawAxis(Constants.OIConstants.LB)) > 0.2) //() -> Math.abs(m_mainStick.getRawAxis(Constants.IOConstants.LB)) > 0.2
+      .onTrue(new ConsTurn(m_driveTrain));
 
     new Trigger(() -> m_mainStick.getRawAxis(5) < -0.9)
     .whileTrue(

@@ -7,8 +7,9 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkLowLevel.MotorType;
+
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -22,7 +23,7 @@ import frc.robot.Constants.PortConstants;
  * The Subsystem class representing the cannon.
  */
 public class Cannon extends SubsystemBase {
-	public CANSparkMax m_pM;
+	public SparkMax m_pM;
 	public Solenoid m_v1, m_v2, m_v3; // TODO: switch to low, med, high
 
 	double setpoint;
@@ -50,7 +51,7 @@ public class Cannon extends SubsystemBase {
 		m_v2.setPulseDuration(RobotConstants.PULSE_DURATION);
 		m_v3.setPulseDuration(RobotConstants.PULSE_DURATION);
 
-		m_pM = new CANSparkMax(PortConstants.PITCH_MOTOR, MotorType.kBrushless);
+		m_pM = new SparkMax(PortConstants.PITCH_MOTOR, MotorType.kBrushless);
 
 		zero = setPitch();
 

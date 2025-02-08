@@ -7,9 +7,9 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkBase;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkLowLevel.MotorType;
+
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -22,7 +22,7 @@ public class DriveTrain extends SubsystemBase {
    */
 
   private static DriveTrain m_instance;
-  public CANSparkMax m_bL, m_mL, m_fL, m_bR, m_mR, m_fR;
+  public SparkMax m_bL, m_mL, m_fL, m_bR, m_mR, m_fR;
   public SlewRateLimiter limiter = new SlewRateLimiter(0.8); 
 
   public static DriveTrain getInstance(){
@@ -32,12 +32,12 @@ public class DriveTrain extends SubsystemBase {
 	}
 	
   public DriveTrain() {
-    m_bR = new CANSparkMax(PortConstants.BACK_RIGHT, MotorType.kBrushless);
-    m_mR = new CANSparkMax(PortConstants.MID_RIGHT, MotorType.kBrushless);
-    m_fR = new CANSparkMax(PortConstants.FRONT_RIGHT, MotorType.kBrushless);
-    m_bL = new CANSparkMax(PortConstants.BACK_LEFT, MotorType.kBrushless);
-    m_fL = new CANSparkMax(PortConstants.FRONT_LEFT, MotorType.kBrushless);
-    m_mL = new CANSparkMax(PortConstants.MID_LEFT, MotorType.kBrushless);
+    m_bR = new SparkMax(PortConstants.BACK_RIGHT, MotorType.kBrushless);
+    m_mR = new SparkMax(PortConstants.MID_RIGHT, MotorType.kBrushless);
+    m_fR = new SparkMax(PortConstants.FRONT_RIGHT, MotorType.kBrushless);
+    m_bL = new SparkMax(PortConstants.BACK_LEFT, MotorType.kBrushless);
+    m_fL = new SparkMax(PortConstants.FRONT_LEFT, MotorType.kBrushless);
+    m_mL = new SparkMax(PortConstants.MID_LEFT, MotorType.kBrushless);
     // m_fR.setIdleMode(CANSparkBase.IdleMode.kCoast);
 
     SmartDashboard.putNumber("Left Tank Speed", 0);

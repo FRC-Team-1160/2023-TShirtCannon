@@ -24,7 +24,7 @@ public class Turn extends Command {
   private double m_angle;
   private PIDController pid;
   private SlewRateLimiter filter;
-  private double target;
+  double target;
 
   public Turn(DriveTrain drive, double angle) {
     addRequirements(drive);
@@ -33,7 +33,7 @@ public class Turn extends Command {
     m_angle = angle;
     
   }
-  //joe mama
+  
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
